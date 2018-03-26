@@ -1,0 +1,53 @@
+<html>
+<body>
+
+{% extends "base.html" %}
+
+
+{% block sidebar %}
+    <ul>
+        <li><a href="/articles/all">Article</a></li>
+        <li><a href="/articles/create">Create Article</a></li>
+    
+    </ul>
+    
+    
+    <h3>Search</h3>
+    <input type="text" id="search" name="search" size="15px" method="post">
+    <ul id="search_results">
+        
+    
+    </ul>
+
+{% endblock %}
+
+{% block content %}
+
+
+<h2>language is :{{language}}</h2>
+<h2>session_language is:{{session_language}}</h2> 
+
+{% if articles.count > 0 %}
+
+<h1>Articles</h1>
+{% for article in articles %}
+<div>
+
+ <a href="/articles/get/{{article.id }}/">{{article.title}}</a>
+<p>{{article.body|upper|truncatewords:"2" }}</p>
+<p>{{aticle.likes}} people liked this article</p>
+</div>
+{% endfor %}
+
+{% else %}
+
+<p>None to show!</p>
+
+{% endif %}
+
+
+{% endblock %}
+
+</body>
+</html>
+
